@@ -134,3 +134,85 @@ const data = [
         },
     },
 ];
+
+function getBooks() {
+    return data;
+}
+
+function getBook(id) {
+    return data.find(book => book.id === id);
+}
+
+// Destructuring examples
+
+const book = getBook(2);
+
+// standard way, bad for multiple properties
+/* const title = book.title;
+const author = book.author;
+const pages = book.pages; */
+
+// using destructuring - objects
+const { title, author, pages, genres, publicationDate } = book;
+
+console.log(title, author, pages, genres);
+
+// standard way
+/* const primaryGenre = genres[0];
+const secondaryGenre = genres[0];
+ */
+
+// using destructuring - arrays 
+// using rest
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+// using spread with arrays
+const newGenresArr = [...genres, "epic fantasy"];
+
+// using spread with objects
+const updatedBook = {
+    ...book,
+    // new obj property
+    moviePublicationDate: "2001-12-19",
+    // overwriting an existing one
+    pages: 200
+};
+
+
+// template literals
+const summary = `${title} is a ${pages}-page long book written by ${author}.`;
+
+// ternary operator
+const pageRange = pages > 1000 ? "over 1000" : "below 1000";
+
+// arrow functions
+const getYear = (date) => +date.split("-")[0];
+console.log(getYear(publicationDate));
+
+// falsy values: 0, null, "", undefined, false
+
+// no short circuiting
+console.log(1 + 1 === 2 && "indeed two");
+// short circuiting
+console.log(1 + 1 === 5 && "not gonna show");
+// short circuiting
+console.log(true || "not gonna show");
+// no short circuiting
+console.log(false || "here it is some string");
+
+const spanishTranslation = book.translations.spanish || "Has not been translated";
+const countWrong = book.reviews.librarything.reviewsCount;
+countWrong;
+
+// if reviewsCount is 0 will return no data because 0 is falsy value
+//const count = book.reviews.librarything.reviewsCount || "no data";
+
+// solution
+// nullish coalescing operator - return the right side only if the left is null or undefined
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+
+
+
+
