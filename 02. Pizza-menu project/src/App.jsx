@@ -1,8 +1,16 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Menu from "./components/Menu";
 import "./index.css";
+
 function App() {
   return (
     <>
-      <h1>Hello React!</h1>
+      <div className="container">
+        <Header />
+        <Menu />
+        <Footer />
+      </div>
     </>
   );
 }
