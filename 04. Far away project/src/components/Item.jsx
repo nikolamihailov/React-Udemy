@@ -1,10 +1,16 @@
-export default function Item({ quantity, description, packed }) {
+export default function Item({
+  id,
+  quantity,
+  description,
+  packed,
+  onDeleteItem,
+}) {
   return (
     <li>
       <span style={packed ? { textDecoration: "line-through" } : {}}>
         {quantity} {description}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(id)}>❌</button>
     </li>
   );
 }

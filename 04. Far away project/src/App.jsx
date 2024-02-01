@@ -15,11 +15,15 @@ function App() {
   const handleAddItem = (item) => {
     setItems(() => [...items, item]);
   };
+
+  const handleDeleteItem = (id) => {
+    setItems(() => items.filter((i) => i.id !== id));
+  };
   return (
     <div className="app">
       <Logo />
       <Form onAddItem={handleAddItem} />
-      <PackingList items={items} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
