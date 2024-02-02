@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Bill from "./components/Bill";
+import BillTotal from "./components/BillTotal";
+import Reset from "./components/Reset";
+import ServiceRating from "./components/ServiceRating";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [bill, setBill] = useState("");
+  const [serviceRatings, setServiceRatings] = useState({ mine: 0, friend: 0 });
+
+  const handleBillChange = (e) => setBill(+e.target.value);
+  const handleServiceRatingChange = (e, whose, percent) =>
+    setServiceRatings((rs) => ({ ...rs, [whose]: percent }));
+
+  const handleReset = () => {
+    setBill(0);
+    setServiceRatings({ mine: 0, friend: 0 });
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Bill bill={bill} onBillChange={handleBillChange} />
+      <ServiceRating
+        serviceRatings={serviceRatings}
+        handleServiceRatingChange={handleServiceRatingChange}
+        whose="mine"
+      >
+        <p>How did you like the service?</p>
+      </ServiceRating>
+      <ServiceRating
+        serviceRatings={serviceRatings}
+        handleServiceRatingChange={handleServiceRatingChange}
+        whose="friend"
+      >
+        <p>How did your friend like the service?</p>
+      </ServiceRating>
+      {bill > 0 && (
+        <>
+          <Reset onReset={handleReset}>
+            <span>Reset</span>
+          </Reset>
+          <BillTotal bill={bill} serviceRatings={serviceRatings} />
+        </>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
