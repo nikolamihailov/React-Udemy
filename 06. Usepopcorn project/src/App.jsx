@@ -36,6 +36,20 @@ export default function App() {
   };
 
   useEffect(() => {
+    const callback = (e) => {
+      if (e.code === "Escape") {
+        handleCloseMovie();
+      }
+    };
+
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, []);
+
+  useEffect(() => {
     const controller = new AbortController();
     const getMovies = async function () {
       try {
@@ -62,6 +76,7 @@ export default function App() {
       setError("");
       setMovies([]);
     }
+    handleCloseMovie();
     getMovies();
 
     return () => {
