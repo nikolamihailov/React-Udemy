@@ -55,6 +55,13 @@ export default function MovieDetails({
     getMovie();
   }, [id]);
 
+  useEffect(() => {
+    if (!title) return;
+    document.title = `MOVIE: ${title}`;
+
+    return () => (document.title = "UsePopcorn");
+  }, [title]);
+
   return (
     <div className="details">
       {isLoadig ? (
