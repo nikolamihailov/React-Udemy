@@ -12,6 +12,7 @@ import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import MovieDetails from "./components/MovieDetails";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useKey } from "./hooks/useKey";
 
 const API_KEY = "7561436b";
 
@@ -36,19 +37,7 @@ export default function App() {
     setWatched((movies) => movies.filter((m) => m.imdbID !== id));
   };
 
-  useEffect(() => {
-    const callback = (e) => {
-      if (e.code === "Escape") {
-        handleCloseMovie();
-      }
-    };
-
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, []);
+  useKey("Escape", handleCloseMovie);
 
   useEffect(() => {
     const controller = new AbortController();
