@@ -13,5 +13,5 @@ export function useKey(key, func) {
         return () => {
             document.removeEventListener("keydown", callback);
         };
-    }, []);
+    }, [key, func]);
 }
