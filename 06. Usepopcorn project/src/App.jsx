@@ -11,18 +11,17 @@ import { useEffect } from "react";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import MovieDetails from "./components/MovieDetails";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const API_KEY = "7561436b";
 
 export default function App() {
-  const [watched, setWatched] = useState(() =>
-    JSON.parse(localStorage.getItem("watched"))
-  );
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMovieId, setSelectedMovieId] = useState(null);
+  const [watched, setWatched] = useLocalStorage([], "watched");
 
   const handleMovieSelect = (id) =>
     setSelectedMovieId((mId) => (mId === id ? null : id));
@@ -50,10 +49,6 @@ export default function App() {
       document.removeEventListener("keydown", callback);
     };
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
