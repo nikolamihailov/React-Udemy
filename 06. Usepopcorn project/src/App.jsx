@@ -15,7 +15,9 @@ import MovieDetails from "./components/MovieDetails";
 const API_KEY = "7561436b";
 
 export default function App() {
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(() =>
+    JSON.parse(localStorage.getItem("watched"))
+  );
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -48,6 +50,10 @@ export default function App() {
       document.removeEventListener("keydown", callback);
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
