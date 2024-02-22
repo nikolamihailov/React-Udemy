@@ -13,3 +13,7 @@
   color: white;
   text-decoration: none;
 }
+
+.nav :global(.active) {
+  background-color: black;
+}
