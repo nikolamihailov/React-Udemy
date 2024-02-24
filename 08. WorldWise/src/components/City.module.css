@@ -3,7 +3,6 @@
   max-height: 70%;
   background-color: var(--color-dark--2);
   border-radius: 7px;
-  overflow: scroll;
 
   width: 100%;
   display: flex;
