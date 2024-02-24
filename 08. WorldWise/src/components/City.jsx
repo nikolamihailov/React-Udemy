@@ -1,5 +1,5 @@
 import styles from "./City.module.css";
-import ButtonBack from "./ButtonBack";
+//import ButtonBack from "./ButtonBack";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -51,10 +51,10 @@ function City() {
           Check out {cityName} on Wikipedia &rarr;
         </a>
       </div>
-
+      {/* 
       <div>
         <ButtonBack />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import Cities from "./components/CityList";
+import City from "./components/City";
 import CountryList from "./components/CountryList";
 
 const BASE_URL = "http://localhost:9000";
@@ -46,6 +47,7 @@ function App() {
             path="cities"
             element={<Cities cities={cities} isLoading={isLoading} />}
           />
+          <Route path="cities/:id" element={<City />} />
           <Route path="countries" element={<CountryList cities={cities} />} />
           <Route path="form" element={<p>form</p>} />
         </Route>
