@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import { useCities } from "../contexts/CitiesContext";
 
@@ -20,8 +20,15 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
+  const navigateTo = useNavigate();
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await deleteCity(id);
+    navigateTo("/app");
+  };
   return (
     <li>
       <Link
@@ -33,7 +40,9 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
         <h3 className={styles["name"]}>{cityName}</h3>
         <time className={styles["date"]}>{formatDate(date)}</time>
-        <button className={styles["deleteBtn"]}>&times;</button>
+        <button className={styles["deleteBtn"]} onClick={handleDelete}>
+          &times;
+        </button>
       </Link>
     </li>
   );
