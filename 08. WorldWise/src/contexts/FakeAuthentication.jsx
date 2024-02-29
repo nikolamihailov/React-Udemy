@@ -39,7 +39,7 @@ export const FakeAuthenticationProvider = function ({ children }) {
   };
   return (
     <FakeAuthenticationContext.Provider
-      values={(login, logout, user, isAuthenticated)}
+      value={{ login, logout, user, isAuthenticated }}
     >
       {children}
     </FakeAuthenticationContext.Provider>
