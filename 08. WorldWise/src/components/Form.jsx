@@ -57,7 +57,7 @@ function Form() {
           type="back"
           onClick={(e) => {
             e.preventDefault();
-            navigateTo(-1);
+            navigateTo("/app/cities");
           }}
         >
           &larr; Back
