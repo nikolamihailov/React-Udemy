@@ -21,7 +21,6 @@ function Map() {
   const { cities } = useCities();
   const { isLoading, getPosition, position } = useGeolocation();
   const [lat, lng] = useUrlPosition();
-  const navigateTo = useNavigate();
 
   useEffect(() => {
     if (lat && lng) setMapPosition([lat, lng]);
@@ -30,9 +29,8 @@ function Map() {
   useEffect(() => {
     if (position) {
       setMapPosition([position.lat, position.lng]);
-      navigateTo(`form?lat=${position.lat}&lng=${position.lng}`);
     }
-  }, [position, navigateTo]);
+  }, [position]);
 
   return (
     <div className={styles["mapContainer"]}>
