@@ -11,7 +11,7 @@ function AccountOperations() {
 
   const {
     loan: currentLoan,
-    loanPupose: currentLoanPurpose,
+    loanPurpose: currentLoanPurpose,
     isLoading,
   } = useSelector((store) => store.account);
   const dispatch = useDispatch();
