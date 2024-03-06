@@ -1,6 +1,6 @@
-import LinkButton from "../../UI/LinkButton"
-import Button from "../../UI/Button"
-import CartItem from "./CartItem"
+import LinkButton from "../../UI/LinkButton";
+import Button from "../../UI/Button";
+import CartItem from "./CartItem";
 
 const fakeCart = [
   {
@@ -24,10 +24,10 @@ const fakeCart = [
     unitPrice: 15,
     totalPrice: 15,
   },
-]
+];
 
 function Cart() {
-  const cart = fakeCart
+  const cart = fakeCart;
 
   return (
     <div className="px-4 py-3">
@@ -37,7 +37,7 @@ function Cart() {
 
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item) => (
-          <CartItem item={item} key={item.key} />
+          <CartItem item={item} key={item.pizzaId} />
         ))}
       </ul>
 
@@ -49,7 +49,7 @@ function Cart() {
         <Button type="secondary">Clear cart</Button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
